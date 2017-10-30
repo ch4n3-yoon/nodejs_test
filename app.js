@@ -4,8 +4,13 @@ var app = express();
 app.use(express.static('image'));
 
 app.get('/', function(req, res) {
+    var d = new Date();
+    var n = d.getTime();
+
     var print = "Hello World<br>";
-    print += "You can see the image <a href='/image'>here</a>"
+    print += "You can see the image <a href='/image'>here</a>";
+    print += "<p>I will tell you the time. </p>";
+    print += "<h1>"+d+"</h1>";
     res.send(print);
     console.log("Connected");
 });
