@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 app.use(express.static('image'));
+app.set('view engine', 'jade');     // I will use the Jade Engine
 
 app.get('/', function(req, res) {
     var d = new Date();
@@ -19,6 +20,11 @@ app.get('/', function(req, res) {
     print += `<p>$_GET['id'] : ${req.query.id}</p>`;
     res.send(print);
     console.log("Connected");
+});
+
+app.get('/template',function(req, res){
+    var d = new Date();
+    res.render('time', {title: 'This is title', time: d});
 });
 
 app.get('/image', function(req, res) {
