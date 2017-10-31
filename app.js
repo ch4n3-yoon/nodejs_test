@@ -1,9 +1,19 @@
 var express = require('express');
 var app = express();
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+    host    : 'localhost',
+    user    : 'root',
+    password: 'godhexor!@#',
+    port    : 3316,
+    database: 'ch4n3'
+});
+console.log("Database connected");
+
 
 app.use(express.static('image'));
 app.set('view engine', 'jade');     // I will use the Jade Engine
-
 app.get('/', function(req, res) {
     var d = new Date();
 
