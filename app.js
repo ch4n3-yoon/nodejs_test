@@ -9,6 +9,7 @@ var connection = mysql.createConnection({
     port    : 3316,
     database: 'ch4n3'
 });
+
 console.log("Database connected");
 
 
@@ -41,6 +42,6 @@ app.get('/image', function(req, res) {
     res.send("<h1>nodejs는 넘모넘모 재밋는거시다!</h1><img src='/dici.jpg'>");
 });
 
-app.listen(3000, function() {
-    console.log('app listening on port 3000!');
-});
+
+app.listen(3000);
+
