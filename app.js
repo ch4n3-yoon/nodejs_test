@@ -1,20 +1,45 @@
+//app.js
+
+// Load Packages
 var express = require('express');
 var app = express();
 var mysql = require('mysql');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+app.use(express.static('image'));
+app.set('view engine', 'jade');     // I will use the Jade Engine
 
 var connection = mysql.createConnection({
     host    : 'localhost',
     user    : 'root',
     password: 'godhexor!@#',
-    port    : 3316,
+    port    : 3306,
     database: 'ch4n3'
 });
 
-console.log("Database connected");
+if (connection.state === 'disconnected')
+{
+    console.log("Can't connect to DB server");
+}
+
+else
+{
+    console.log("Database connected!!");
+}
 
 
-app.use(express.static('image'));
-app.set('view engine', 'jade');     // I will use the Jade Engine
+// Connect to MongoDB Server
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    // Connected to MongoDB Server
+    console.log("Connected to MongoDB Server");
+});
+
+
+
+
 app.get('/', function(req, res) {
     var d = new Date();
 
